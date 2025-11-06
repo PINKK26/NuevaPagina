@@ -97,7 +97,7 @@
     .form-row{display:grid; gap:8px; margin:10px 0}
 
     /* Login/Register/Forgot */
-    .login,.register,.forgot{max-width:460px; margin:32px auto; padding:22px}
+    .login,.register,.forgot{max-width:680px; margin:32px auto; padding:22px}
 
     /* Feed */
     .toolbar{display:flex; gap:10px; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap}
@@ -236,18 +236,67 @@
     <section id="view-register" class="view hidden">
       <form id="formRegister" class="register panel">
         <h2 style="margin:0 0 8px">Crear cuenta</h2>
-        <div class="form-row">
-          <label for="regEmail">Correo</label>
-          <input id="regEmail" class="input" type="email" placeholder="tu@correo.cl" required>
+        <div class="hint">Completa tus datos básicos. Estos campos se guardarán en tu perfil.</div>
+
+        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+          <div>
+            <label for="regEmail">Correo</label>
+            <input id="regEmail" class="input" type="email" placeholder="tu@correo.cl" required>
+          </div>
+          <div>
+            <label for="regNick">Nombre de jugador</label>
+            <input id="regNick" class="input" type="text" placeholder="TuNick" minlength="2" required>
+          </div>
         </div>
-        <div class="form-row">
-          <label for="regNick">Nombre de jugador</label>
-          <input id="regNick" class="input" type="text" placeholder="TuNick" minlength="2" required>
+
+        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+          <div>
+            <label for="regPass">Contraseña</label>
+            <input id="regPass" class="input" type="password" placeholder="mínimo 6 caracteres" minlength="6" required>
+          </div>
+          <div>
+            <label for="regSex">Sexo</label>
+            <select id="regSex" class="input">
+              <option value="">Prefiero no decir</option>
+              <option value="male">Masculino</option>
+              <option value="female">Femenino</option>
+              <option value="other">Otro</option>
+            </select>
+          </div>
         </div>
-        <div class="form-row">
-          <label for="regPass">Contraseña</label>
-          <input id="regPass" class="input" type="password" placeholder="mínimo 6 caracteres" minlength="6" required>
+
+        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+          <div>
+            <label for="regDob">Fecha de nacimiento</label>
+            <input id="regDob" class="input" type="date" max="">
+          </div>
+          <div>
+            <label class="hint">Preferencia de juego</label>
+            <select id="regPlayPref" class="input">
+              <option value="ambos">Ambos (Competitivo y Casual)</option>
+              <option value="competitivo">Competitivo</option>
+              <option value="casual">Casual</option>
+            </select>
+          </div>
         </div>
+
+        <div class="form-row">
+          <label class="hint">Tipo(s) de juegos (marca los que apliquen)</label>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px">
+            <label style="display:flex; gap:6px; align-items:center"><input type="checkbox" class="regGameType" value="FPS">FPS</label>
+            <label style="display:flex; gap:6px; align-items:center"><input type="checkbox" class="regGameType" value="MOBA">MOBA</label>
+            <label style="display:flex; gap:6px; align-items:center"><input type="checkbox" class="regGameType" value="RPG">RPG</label>
+            <label style="display:flex; gap:6px; align-items:center"><input type="checkbox" class="regGameType" value="MMO">MMO</label>
+            <label style="display:flex; gap:6px; align-items:center"><input type="checkbox" class="regGameType" value="Estrategia">Estrategia</label>
+            <label style="display:flex; gap:6px; align-items:center"><input type="checkbox" class="regGameType" value="Otro">Otro</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="regCountry">País</label>
+          <input id="regCountry" class="input" type="text" placeholder="Chile" />
+        </div>
+
         <div class="form-row">
           <button class="btn primary" type="submit" style="width:100%">Crear cuenta</button>
         </div>
@@ -284,7 +333,7 @@
         </div>
         <div id="grid" class="grid"></div>
       </div>
-      <div class="hint" style="text-align:center; padding:18px">Si el usuario objetivo existe en tu tabla profiles, el match se guardará en la base de datos. Si no, se mantendrá local (fallback).</div>
+      <div class="hint" style="text-align:center; padding:18px">Si el usuario objetivo existe en tu tabla profiles, el match se guardará en la base de datos. Si no, se mantendrá local (fallback).</d[...]
     </section>
 
     <!-- PROFILE -->
@@ -318,12 +367,12 @@
 
     // REEMPLAZA ESTOS VALORES con los de tu proyecto Supabase
     const SUPABASE_URL = 'https://jennxlgbaqlneuxunhqw.supabase.co'   // <- tu project URL
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Implbm54bGdiYXFsbmV1eHVuaHF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzNjQ4ODMsImV4cCI6MjA3Nzk0MDg4M30.2iMvCkcJR4lrkwee9tK8wpyQYZs2Otx0VQNKd1sqXgk'             // <- tu anon (public) key
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Implbm54bGdiYXFsbmV1eHVuaHF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzNjQ4ODMsImV4cCI6MjA3Nzk0MDg4M30.2iMv[...]'
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
     // ------------------ Datos demo (feed) ------------------
-    const FEED = [
+    let FEED = [
       { id:1, title:"Duo para VALORANT (Plat III+)", game:"VALORANT", rank:"Platino III", region:"Chile / LAS",
         tags:["Duelist","Ranked","No toxic"],
         thumb:"https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?q=80&w=1200&auto=format&fit=crop",
@@ -354,6 +403,11 @@
     function localSetMatches(arr){ localStorage.setItem(localMatchesKey, JSON.stringify(arr)) }
     function localGetMsgs(id){ return JSON.parse(localStorage.getItem(msgKey(id)) || '[]') }
     function localSetMsgs(id,arr){ localStorage.setItem(msgKey(id), JSON.stringify(arr)) }
+
+    // Save pending registration data until first successful login (keyed by email)
+    function savePendingReg(email, data){ localStorage.setItem(`pending_profile_${email}`, JSON.stringify(data)); }
+    function getPendingReg(email){ return JSON.parse(localStorage.getItem(`pending_profile_${email}`) || 'null'); }
+    function clearPendingReg(email){ localStorage.removeItem(`pending_profile_${email}`); }
 
     // ------------------ UI state ------------------
     const views = ["home","login","register","forgot","feed","profile","messages"];
@@ -391,6 +445,8 @@
       }
       // fetch/create profile in DB to ensure it's present
       await ensureProfileExists(user);
+      // Ensure user appears in feed (even if profile minimal)
+      await addCurrentUserToFeedIfMissing();
       await loadMyProfile();
       await renderConversations(); // will fetch matches from DB or local
       updateBurgerVisibility(locationActive || 'feed');
@@ -401,13 +457,26 @@
       // Try to get profile by id
       const { data, error } = await supabase.from('profiles').select('*').eq('id', user.id).single();
       if (error && error.code === 'PGRST116') {
-        // create minimal profile
+        // Try to find pending registration data (saved at sign up)
+        const pending = getPendingReg(user.email || '');
         const payload = {
           id: user.id,
-          username: user.email?.split('@')[0] ?? user.id.slice(0,8),
-          email: user.email ?? null
-        }
-        await supabase.from('profiles').insert(payload);
+          username: pending?.username ?? (user.email?.split('@')[0] ?? user.id.slice(0,8)),
+          email: user.email ?? null,
+          avatar_url: pending?.avatar_url ?? null,
+          rank: pending?.rank ?? null,
+          preferences: pending?.preferences ?? {},
+          sex: pending?.sex ?? null,
+          birthday: pending?.birthday ?? null,
+          play_pref: pending?.play_pref ?? null,
+          game_types: pending?.game_types ?? null,
+          country: pending?.country ?? null
+        };
+        // insert profile row
+        const { error:insErr } = await supabase.from('profiles').insert(payload);
+        if(insErr){ console.error('ensureProfileExists insert', insErr); }
+        // clear pending
+        if(pending) clearPendingReg(user.email);
       }
     }
 
@@ -418,29 +487,270 @@
       if(!data){
         box.innerHTML = `No hay perfil. Puedes crearlo desde la vista Perfil (Se creará automáticamente al guardar).`;
       } else {
-        box.innerHTML = `
-          <div class="panel" style="padding:14px">
-            <div style="display:flex; gap:14px; align-items:center">
-              <div style="width:64px;height:64px;border-radius:14px;background:var(--grad); background-size:cover; background-image:url('${data.avatar_url || ''}')"></div>
-              <div>
-                <div style="font-weight:700">${data.username || currentUser.email.split("@")[0]}</div>
-                <div class="hint">${data.email || currentUser.email || ''}</div>
-              </div>
-            </div>
-            <div class="hint" style="margin-top:14px">
-              Este perfil viene desde <b>Supabase</b>.
-            </div>
-          </div>`;
+        // Render editable profile form (allows avatar upload, rank, and preferences)
+        renderProfileForm(data);
       }
     }
 
-    // Save/update profile (called from UI "save profile" if you add such UI)
+    // Render profile edit form with preferences per game plus personal fields
+    function renderProfileForm(profile){
+      const box = $("#profileBox");
+      const username = profile.username || currentUser.email.split("@")[0];
+      const email = profile.email || currentUser.email || '';
+      const avatar = profile.avatar_url || '';
+      const rank = profile.rank || '';
+      const preferences = profile.preferences || {};
+      const sex = profile.sex || '';
+      const birthday = profile.birthday || '';
+      const play_pref = profile.play_pref || 'ambos';
+      const game_types = profile.game_types || [];
+      const country = profile.country || '';
+
+      // list of supported games (expandable)
+      const GAMES = ["VALORANT","League of Legends","Destiny 2","Elden Ring","Other"];
+
+      box.innerHTML = `
+        <div style="display:grid; gap:10px">
+          <div style="display:flex; gap:14px; align-items:center">
+            <div style="width:64px;height:64px;border-radius:14px;background:var(--grad); background-size:cover; background-image:url('${avatar || ''}')"></div>
+            <div>
+              <div style="font-weight:700">${escapeHtml(username)}</div>
+              <div class="hint">${escapeHtml(email)}</div>
+            </div>
+          </div>
+
+          <div class="panel" style="padding:12px">
+            <div style="display:grid; gap:8px">
+              <div style="display:flex; gap:12px; align-items:center">
+                <div style="width:92px;height:92px;border-radius:14px;background:#0a0a0a; overflow:hidden; display:flex; align-items:center; justify-content:center">
+                  <img id="avatarPreview" src="${avatar || FALLBACK_IMG}" alt="avatar" style="width:100%; height:100%; object-fit:cover"/>
+                </div>
+                <div style="flex:1">
+                  <div style="font-weight:700">${escapeHtml(username)}</div>
+                  <div class="hint">${escapeHtml(email)}</div>
+                  <div style="margin-top:8px">
+                    <label class="hint">Cambiar foto</label><br/>
+                    <input id="avatarFile" type="file" accept="image/*" />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label class="hint">Nick / Usuario</label>
+                <input id="inpUsername" class="input" type="text" value="${escapeHtml(username)}" />
+              </div>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px">
+                <div>
+                  <label class="hint">Rango principal</label>
+                  <select id="inpRank" class="input">
+                    <option value="">-- Sin especificar --</option>
+                    <option value="Bronce">Bronce</option>
+                    <option value="Plata">Plata</option>
+                    <option value="Oro">Oro</option>
+                    <option value="Platino">Platino</option>
+                    <option value="Diamante">Diamante</option>
+                    <option value="Maestro">Maestro</option>
+                    <option value="Inmortal">Inmortal</option>
+                    <option value="Radiante">Radiante</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="hint">País</label>
+                  <input id="inpCountry" class="input" type="text" value="${escapeHtml(country)}" />
+                </div>
+              </div>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px">
+                <div>
+                  <label class="hint">Sexo</label>
+                  <select id="inpSex" class="input">
+                    <option value="">Prefiero no decir</option>
+                    <option value="male">Masculino</option>
+                    <option value="female">Femenino</option>
+                    <option value="other">Otro</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="hint">Fecha de nacimiento</label>
+                  <input id="inpDob" class="input" type="date" value="${escapeHtml(birthday || '')}" />
+                </div>
+              </div>
+
+              <div>
+                <label class="hint">Preferencia de juego</label>
+                <select id="inpPlayPref" class="input">
+                  <option value="ambos">Ambos (Competitivo y Casual)</option>
+                  <option value="competitivo">Competitivo</option>
+                  <option value="casual">Casual</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="hint">Tipo(s) de juegos</label>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px">
+                  ${['FPS','MOBA','RPG','MMO','Estrategia','Otro'].map(t=>`
+                    <label style="display:flex; gap:6px; align-items:center">
+                      <input type="checkbox" class="profileGameType" value="${t}" ${game_types.includes(t) ? 'checked' : ''} />
+                      ${t}
+                    </label>
+                  `).join('')}
+                </div>
+              </div>
+
+              <div style="display:flex; gap:8px">
+                <button class="btn primary" id="btnSaveProfile">Guardar perfil</button>
+                <button class="btn ghost" id="btnCancelProfile">Cancelar</button>
+              </div>
+
+              <div id="profileMsg" class="hint"></div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // set values after DOM inserted
+      setTimeout(()=>{
+        $("#inpRank").value = rank || "";
+        $("#inpSex").value = sex || "";
+        $("#inpPlayPref").value = play_pref || "ambos";
+        $("#inpDob").value = birthday || "";
+      }, 0);
+
+      // avatar preview on file select
+      $("#avatarFile").addEventListener('change', (e)=>{
+        const f = e.target.files && e.target.files[0];
+        if(!f) return;
+        const url = URL.createObjectURL(f);
+        $("#avatarPreview").src = url;
+      });
+
+      $("#btnCancelProfile").addEventListener('click', (e)=>{
+        e.preventDefault();
+        loadMyProfile();
+      });
+
+      $("#btnSaveProfile").addEventListener('click', async (e)=>{
+        e.preventDefault();
+        const msg = $("#profileMsg");
+        msg.textContent = "Guardando…";
+        msg.style.color = "var(--muted)";
+        // gather inputs
+        const usernameVal = $("#inpUsername").value.trim();
+        const rankVal = $("#inpRank").value || null;
+        const files = $("#avatarFile").files;
+        let avatarUrl = profile.avatar_url || null;
+        // if a file selected, upload it
+        if(files && files[0]){
+          try {
+            avatarUrl = await uploadAvatar(files[0]);
+          } catch(err){
+            console.error('uploadAvatar', err);
+            msg.textContent = "Error subiendo foto: "+(err.message||err);
+            msg.style.color = "var(--err)";
+            return;
+          }
+        }
+        // build preferences object from checkboxes (we keep existing preferences structure)
+        const prefs = {}; // keep existing preferences per-game if present
+        $$("#gamesBox .game-settings")?.forEach?.(()=>{}); // keep placeholder (not required)
+
+        // game types
+        const selectedGameTypes = [];
+        $$(".profileGameType").forEach(c=>{ if(c.checked) selectedGameTypes.push(c.value) });
+
+        // other personal fields
+        const sexVal = $("#inpSex").value || null;
+        const dobVal = $("#inpDob").value || null;
+        const playPrefVal = $("#inpPlayPref").value || null;
+        const countryVal = $("#inpCountry").value?.trim() || null;
+
+        // upsert profile
+        const payload = {
+          id: currentUser.id,
+          username: usernameVal || currentUser.email.split('@')[0],
+          avatar_url: avatarUrl,
+          rank: rankVal,
+          preferences: preferences || {},
+          sex: sexVal,
+          birthday: dobVal,
+          play_pref: playPrefVal,
+          game_types: selectedGameTypes,
+          country: countryVal,
+          email: email
+        };
+        const res = await upsertProfile(payload);
+        if(res){
+          msg.textContent = "Perfil guardado.";
+          msg.style.color = "var(--ok)";
+          // ensure feed updated
+          await addCurrentUserToFeedIfMissing(true);
+          await loadMyProfile();
+        } else {
+          msg.textContent = "Error al guardar perfil.";
+          msg.style.color = "var(--err)";
+        }
+      });
+    }
+
+    // Save/update profile (called from UI "save profile")
     async function upsertProfile(payload){
       // payload must include id = currentUser.id
       payload.id = currentUser.id;
       const { data, error } = await supabase.from('profiles').upsert(payload, { returning: 'representation' });
       if(error){ console.error('upsertProfile', error); return null; }
       return data;
+    }
+
+    // Upload avatar to Supabase Storage and return public URL
+    async function uploadAvatar(file){
+      // bucket name: "avatars" (create this in your Supabase project)
+      const bucket = 'avatars';
+      const path = `${currentUser.id}/${Date.now()}_${file.name.replace(/\s/g,'_')}`;
+      // upload
+      const { data, error } = await supabase.storage.from(bucket).upload(path, file, { upsert: true });
+      if(error) throw error;
+      const { data:publicData } = supabase.storage.from(bucket).getPublicUrl(path);
+      return publicData.publicUrl;
+    }
+
+    // Ensure the current user is present in the FEED (so appears as candidate even if profile minimal)
+    // if force=true, update existing entry with fresh profile data
+    async function addCurrentUserToFeedIfMissing(force=false){
+      if(!isLogged()) return;
+      try {
+        const { data:profile } = await supabase.from('profiles').select('*').eq('id', currentUser.id).single();
+        if(!profile) return;
+        const uidKey = 'u_' + currentUser.id;
+        let exists = FEED.find(i => String(i.id) === uidKey);
+        const thumb = profile.avatar_url || FALLBACK_IMG;
+        const title = (profile.username || currentUser.email.split('@')[0]) + " — Jugador";
+        const rank = profile.rank || '—';
+        const game = Object.keys(profile.preferences || {})[0] || (profile.game_types && profile.game_types[0]) || 'General';
+        const partner = profile.username || currentUser.email.split('@')[0];
+        if(!exists){
+          FEED.unshift({
+            id: uidKey,
+            title,
+            game,
+            rank,
+            region: profile.country || "Local",
+            tags:["Nuevo","Perfil"],
+            thumb,
+            partner
+          });
+        } else if(force){
+          // update existing
+          exists.title = title;
+          exists.thumb = thumb;
+          exists.rank = rank;
+          exists.game = game;
+          exists.partner = partner;
+          exists.region = profile.country || "Local";
+        }
+      } catch(e){
+        console.error('addCurrentUserToFeedIfMissing', e);
+      }
     }
 
     // ------------------ Router + View handling ------------------
@@ -502,6 +812,15 @@
     }
 
     // ------------------ Auth UI (forms) ------------------
+    // Set max date for DOB to today - 13 years for safety (optional)
+    (function setDobMax(){
+      const el = $("#regDob");
+      if(!el) return;
+      const d = new Date();
+      d.setFullYear(d.getFullYear() - 13);
+      el.max = d.toISOString().split('T')[0];
+    })();
+
     $("#formLogin")?.addEventListener("submit", async (e)=>{
       e.preventDefault();
       const email = $("#email").value.trim();
@@ -527,17 +846,37 @@
       const email = $("#regEmail").value.trim();
       const nick  = $("#regNick").value.trim();
       const pass  = $("#regPass").value;
+      const sex   = $("#regSex").value || null;
+      const dob   = $("#regDob").value || null;
+      const playPref = $("#regPlayPref").value || 'ambos';
+      const country = $("#regCountry").value.trim() || null;
       const msg   = $("#regMsg");
       if(!email || !nick || pass.length<6){
         msg.textContent = "Completa correo, nick y contraseña (6+).";
         msg.style.color = "var(--warn)";
         return;
       }
+
+      // gather game types
+      const gameTypes = [];
+      $$(".regGameType").forEach(c=>{ if(c.checked) gameTypes.push(c.value) });
+
+      // Save pending registration data to localStorage so when user logs in for first time
+      // we can create the profile row with these fields (we can't insert profile with id until we know auth uid)
+      savePendingReg(email, {
+        username: nick,
+        sex,
+        birthday: dob,
+        play_pref: playPref,
+        game_types: gameTypes,
+        country,
+        preferences: {}
+      });
+
       msg.textContent = "Creando cuenta…";
       msg.style.color = "var(--muted)";
       const { data, error } = await supabase.auth.signUp({ email, password: pass });
       if(error){ msg.textContent = error.message; msg.style.color = "var(--err)"; return; }
-      // If you want to set username immediately in profiles, wait for confirmation or sign in.
       msg.textContent = "Cuenta creada. Revisa tu correo si está habilitada la confirmación. Puedes iniciar sesión ahora.";
       msg.style.color = "var(--ok)";
       // Create profile upon sign in via onAuthStateChange/ensureProfileExists
@@ -575,7 +914,7 @@
           <img class="thumb" src="${safeSrc}" alt="${item.game}">
           <div class="card-body">
             <h3 class="title">${item.title}</h3>
-            <div class="meta">${item.game} • ${item.rank} • ${item.region}</div>
+            <div class="meta">${item.game} • ${item.rank || '—'} • ${item.region || ''}</div>
             <div class="tags">${(item.tags||[]).map(t=>`<span class="chip">${t}</span>`).join("")}</div>
             <div class="actions">
               <button class="pill like" data-like="${item.id}">Hacer match</button>
@@ -615,7 +954,7 @@
     }
 
     async function addMatchFromFeed(feedId){
-      const item = FEED.find(x=>x.id===feedId);
+      const item = FEED.find(x=>String(x.id)===String(feedId));
       if(!item) return;
       // Try to find profile by username = partner
       const partnerName = item.partner;
